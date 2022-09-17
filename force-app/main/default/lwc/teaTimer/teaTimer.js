@@ -12,6 +12,7 @@ export default class GetterCountdown extends LightningElement {
 
     startCountdown() {
         this.timerStarted = true;
+        this.secondsLeft = parseInt(this.firstInterval) + this.intervalNumber * this.intervalIncrease;
         this.intervalNumber++;
         this.intervalId=setInterval(() => {
             this.secondsLeft--;
@@ -24,7 +25,6 @@ export default class GetterCountdown extends LightningElement {
     finishCountdown(){
         clearInterval(this.intervalId);
         this.intervalId = null;
-        this.secondsLeft = parseInt(this.firstInterval) + this.intervalNumber * this.intervalIncrease;
     }
 
     get timerTitle(){
