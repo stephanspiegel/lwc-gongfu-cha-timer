@@ -35,7 +35,7 @@ export default class GetterCountdown extends LightningElement {
         if (this.intervalId===null){
             return 'dormant'
         }
-        if (this.secondsLeft < 5){
+        if (this.secondsLeft <= 3){
             return 'imminent';
         }
         return 'ticking';
