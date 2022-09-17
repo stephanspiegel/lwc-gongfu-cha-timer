@@ -27,6 +27,10 @@ export default class GetterCountdown extends LightningElement {
         this.secondsLeft = parseInt(this.firstInterval) + this.intervalNumber * this.intervalIncrease;
     }
 
+    get timerTitle(){
+        return `Infusion ${this.intervalNumber}/${this.intervalCount}`
+    }
+
     countdownColorClass(){
         if (this.intervalId===null){
             return 'dormant'

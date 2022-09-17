@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="Timer">
+    <lightning-card title={timerTitle}>
         <div class="slds-var-p-around_medium">
             <template if:false={timerStarted}>
                 <div>
@@ -13,7 +13,6 @@
                 </div>
             </template>
             <div class="slds-var-p-top_medium">
-                <div>Infusion {intervalNumber}/{intervalCount}</div>
                 <div class={countdownClass}>
                     {secondsLeft}
                 </div>
