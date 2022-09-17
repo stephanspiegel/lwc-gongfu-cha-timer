@@ -1,47 +1,56 @@
 import { LightningElement } from 'lwc';
 
 export default class GetterCountdown extends LightningElement {
-    timer=30;
-    interval=null;
+
+    firstInterval = 20;
+    intervalIncrease = 5;
+    intervalCount = 9;
+    intervalNumber = 0;
+    secondsLeft = this.firstInterval;
+    intervalId = null;
+    timerStarted = false;
 
     startCountdown() {
-        this.interval=setInterval(() => {
-            this.timer--;
-            if (this.timer==0) {
-                clearInterval(this.interval);
+        this.timerStarted = true;
+        this.intervalNumber++;
+        this.intervalId=setInterval(() => {
+            this.secondsLeft--;
+            if (this.secondsLeft===0) {
+                this.finishCountdown();
             }
         }, 1000);
     }
 
-    get countdown() {
-        let result='Timer expired';
-        if (null==this.interval) {
-            result='Timer not started';
-        }
-        else if (this.timer>0) {
-            result=this.timer + ' seconds to go!';
-        }
+    finishCountdown(){
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+        this.secondsLeft = parseInt(this.firstInterval) + this.intervalNumber * this.intervalIncrease;
+    }
 
-        return result;
+    countdownColorClass(){
+        if (this.intervalId===null){
+            return 'dormant'
+        }
+        if (this.secondsLeft < 5){
+            return 'imminent';
+        }
+        return 'ticking';
     }
 
     get countdownClass() {
-        let result='expired';
-        if (null==this.interval) {
-            result='dormant';
-        }
-        else if (this.timer>0) {
-            result='ticking';
-        }
-
-        return result;
+        return this.countdownColorClass() + ' countDown';
     }
 
-    get timerStarted() {
-        return null!==this.interval;
+    firstInfusionChanged(event) {
+        this.firstInterval=event.detail.value;
+        this.secondsLeft=event.detail.value;
     }
 
-    timerChanged(event) {
-        this.timer=event.detail.value;
+    intervalIncreaseChanged(event) {
+        this.intervalIncrease=event.detail.value;
+    }
+
+    intervalCountChanged(event) {
+        this.intervalCount=event.detail.value;
     }
 }

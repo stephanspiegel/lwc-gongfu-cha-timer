@@ -1,4 +1,8 @@
-.expired {
+.countDown {
+    font-size: 20em;
+    line-height: 1em;
+}
+.imminent {
     color: red;
 }
 

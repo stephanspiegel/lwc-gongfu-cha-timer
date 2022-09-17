@@ -1,14 +1,27 @@
 <template>
-    <lightning-card title="Gong Fu Cha Timer">
+    <lightning-card title="Timer">
         <div class="slds-var-p-around_medium">
             <template if:false={timerStarted}>
                 <div>
-                    <lightning-input label="Time" type="number" value={timer} onchange={timerChanged}></lightning-input>
+                    <lightning-input label="First infusion" type="number" value={firstInterval} onchange={firstInfusionChanged}></lightning-input>
                 </div>
-                <lightning-button label="Start" onclick={startCountdown}></lightning-button>
+                <div>
+                    <lightning-input label="Increase infusions by" type="number" value={intervalIncrease} onchange={intervalIncreaseChanged}></lightning-input>
+                </div>
+                <div>
+                    <lightning-input label="Number of infusions" type="number" value={intervalCount} onchange={intervalCountChanged}></lightning-input>
+                </div>
             </template>
             <div class="slds-var-p-top_medium">
-                <div class={countdownClass}>{countdown}</div>
+                <div>Infusion {intervalNumber}/{intervalCount}</div>
+                <div class={countdownClass}>
+                    {secondsLeft}
+                </div>
+            </div>
+            <div class="slds-var-p-top_medium">
+                <div class="slds-var-p-top_medium">
+                    <lightning-button label="Start next infusion" onclick={startCountdown}></lightning-button>
+                </div>
             </div>
         </div>
     </lightning-card>
