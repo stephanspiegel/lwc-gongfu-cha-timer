@@ -31,6 +31,14 @@ export default class GetterCountdown extends LightningElement {
         return `Infusion ${this.intervalNumber}/${this.intervalCount}`
     }
 
+    timerIsRunning(){
+        return this.intervalId !== null;
+    }
+
+    get disableButton(){
+        return this.timerIsRunning();
+    }
+
     countdownColorClass(){
         if (this.intervalId===null){
             return 'dormant'

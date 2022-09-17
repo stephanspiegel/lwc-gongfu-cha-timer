@@ -21,7 +21,12 @@
             </template>
             <div class="slds-var-p-top_medium">
                 <div class="slds-var-p-top_medium">
-                    <lightning-button label="Start next infusion" onclick={startCountdown}></lightning-button>
+                    <lightning-button 
+                        label="Start next infusion" 
+                        onclick={startCountdown}
+                        disabled={disableButton}
+                    >
+                    </lightning-button>
                 </div>
             </div>
         </div>
