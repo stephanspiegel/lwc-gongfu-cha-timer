@@ -12,11 +12,13 @@
                     <lightning-input label="Number of infusions" type="number" value={intervalCount} onchange={intervalCountChanged}></lightning-input>
                 </div>
             </template>
-            <div class="slds-var-p-top_medium">
-                <div class={countdownClass}>
-                    {secondsLeft}
+            <template if:true={timerStarted}>
+                <div class="slds-var-p-top_medium">
+                    <div class={countdownClass}>
+                        {secondsLeft}
+                    </div>
                 </div>
-            </div>
+            </template>
             <div class="slds-var-p-top_medium">
                 <div class="slds-var-p-top_medium">
                     <lightning-button label="Start next infusion" onclick={startCountdown}></lightning-button>
