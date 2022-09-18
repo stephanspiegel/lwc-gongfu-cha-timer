@@ -39,6 +39,10 @@ export default class GetterCountdown extends LightningElement {
         return this.timerIsRunning();
     }
 
+    get buttonLabel(){
+        return `Start infusion ${this.intervalNumber + 1}`
+    }
+
     countdownColorClass(){
         if (this.intervalId===null){
             return 'dormant'
