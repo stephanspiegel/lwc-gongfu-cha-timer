@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tea_Variety__c</fullName>
+    <externalId>false</externalId>
+    <label>Tea Variety</label>
+    <referenceTo>Tea_Variety__c</referenceTo>
+    <relationshipLabel>Tea Brewing Steps</relationshipLabel>
+    <relationshipName>Tea_Brewing_Steps</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>
