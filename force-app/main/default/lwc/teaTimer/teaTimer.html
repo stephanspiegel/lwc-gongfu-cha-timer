@@ -2,14 +2,46 @@
     <lightning-card title={timerTitle}>
         <div class="slds-var-p-around_medium">
             <template if:false={timerStarted}>
-                <div>
-                    <lightning-input label="First infusion" type="number" value={firstInterval} onchange={firstInfusionChanged}></lightning-input>
-                </div>
-                <div>
-                    <lightning-input label="Increase infusions by" type="number" value={intervalIncrease} onchange={intervalIncreaseChanged}></lightning-input>
-                </div>
-                <div>
-                    <lightning-input label="Number of infusions" type="number" value={intervalCount} onchange={intervalCountChanged}></lightning-input>
+                <div class="inputs">
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div>
+                                <lightning-input 
+                                    label="First infusion" 
+                                    type="number" 
+                                    value={firstInterval} 
+                                    onchange={firstInfusionChanged}
+                                    max-length="3"
+                                >
+                                </lightning-input>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div>
+                                <lightning-input 
+                                    label="Increase infusions by" 
+                                    type="number" 
+                                    value={intervalIncrease} 
+                                    onchange={intervalIncreaseChanged}
+                                    max-length="2"
+                                >
+                                </lightning-input>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                            <div>
+                                <lightning-input
+                                    label="Number of infusions" 
+                                    type="number" 
+                                    value={intervalCount} 
+                                    onchange={intervalCountChanged}
+                                    max-length="2"
+                                >
+                                </lightning-input>
+                            </div>
+
+                        </lightning-layout-item>
+                    </lightning-layout>
                 </div>
             </template>
             <template if:true={timerStarted}>
@@ -21,12 +53,13 @@
             </template>
             <div class="slds-var-p-top_medium">
                 <div class="slds-var-p-top_medium">
-                    <lightning-button 
-                        label={buttonLabel}
-                        onclick={startCountdown}
-                        disabled={disableButton}
-                    >
-                    </lightning-button>
+                    <template if:false={hideButton}>
+                        <lightning-button 
+                            label={buttonLabel}
+                            onclick={startCountdown}
+                        >
+                        </lightning-button>
+                    </template>
                 </div>
             </div>
         </div>

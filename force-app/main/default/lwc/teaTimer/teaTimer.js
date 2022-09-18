@@ -37,7 +37,7 @@ export default class GetterCountdown extends LightningElement {
         return this.intervalId !== null;
     }
 
-    get disableButton(){
+    get hideButton(){
         return this.timerIsRunning();
     }
 
