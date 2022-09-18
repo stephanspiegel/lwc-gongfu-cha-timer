@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
 
 export default class GetterCountdown extends LightningElement {
 
@@ -23,6 +24,7 @@ export default class GetterCountdown extends LightningElement {
     }
 
     finishCountdown(){
+        this.playAudio();
         clearInterval(this.intervalId);
         this.intervalId = null;
     }
@@ -68,5 +70,13 @@ export default class GetterCountdown extends LightningElement {
 
     intervalCountChanged(event) {
         this.intervalCount=event.detail.value;
+    }
+
+
+    playAudio() {
+        let audio = new Audio();
+        audio.src = BELL_AUDIO;
+        audio.load();
+        audio.play();
     }
 }
