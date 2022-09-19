@@ -1,5 +1,5 @@
 .countDown {
-    font-size: 20em;
+    font-size: 8em;
     line-height: 1em;
 }
 .imminent {
@@ -12,4 +12,8 @@
 
 .dormant {
     color: darkslateblue;
+}
+
+.initInputs {
+    width: 5em;
 }

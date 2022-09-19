@@ -1,5 +1,6 @@
 import { LightningElement } from 'lwc';
 import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
+import { formatTime } from 'c/util';
 
 export default class GetterCountdown extends LightningElement {
 
@@ -43,6 +44,10 @@ export default class GetterCountdown extends LightningElement {
 
     get buttonLabel(){
         return `Start infusion ${this.intervalNumber + 1}`
+    }
+
+    get timeLeft(){
+        return formatTime(this.secondsLeft);
     }
 
     countdownColorClass(){
