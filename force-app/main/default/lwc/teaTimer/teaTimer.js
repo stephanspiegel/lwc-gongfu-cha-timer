@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
 import { formatTime } from 'c/util';
 
-export default class GetterCountdown extends LightningElement {
+export default class TeaTimer extends LightningElement {
 
     firstInterval = 20;
     intervalIncrease = 5;
@@ -65,16 +65,16 @@ export default class GetterCountdown extends LightningElement {
     }
 
     firstInfusionChanged(event) {
-        this.firstInterval=event.detail.value;
-        this.secondsLeft=event.detail.value;
+        this.firstInterval=event.target.value;
+        this.secondsLeft=this.firstInterval;
     }
 
     intervalIncreaseChanged(event) {
-        this.intervalIncrease=event.detail.value;
+        this.intervalIncrease=event.target.value;
     }
 
     intervalCountChanged(event) {
-        this.intervalCount=event.detail.value;
+        this.intervalCount=event.target.value;
     }
 
 
