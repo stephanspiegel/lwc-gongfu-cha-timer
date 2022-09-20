@@ -9,7 +9,7 @@ describe('c-tea-timer', () => {
         }
     });
 
-    it('shows information about the current infusion in the title', async () => {
+    it('shows information about the current infusion in the title', () => {
         const element = createElement('c-tea-timer', {
             is: TeaTimer
         });
