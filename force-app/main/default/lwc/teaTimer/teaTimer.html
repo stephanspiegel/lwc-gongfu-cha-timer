@@ -4,9 +4,7 @@
             <div class="slds-var-p-around_medium">
                 <div class={initSectionClass}>
                     <c-simple-init 
-                        interval-number={requestIntervalNumber}
-                        onupdate_interval={intervalDurationChanged}
-                        onupdate_interval_count={intervalCountChanged}
+                        oninterval_count_changed={intervalCountChanged}
                     >
                     </c-simple-init>
                 </div>
@@ -21,7 +19,7 @@
                 </template>
                 <div class="slds-var-p-top_medium">
                     <div class="slds-var-p-top_medium">
-                        <template if:false={hideButton}>
+                        <template if:true={showButton}>
                             <lightning-button 
                                 label={buttonLabel}
                                 onclick={startCountdown}

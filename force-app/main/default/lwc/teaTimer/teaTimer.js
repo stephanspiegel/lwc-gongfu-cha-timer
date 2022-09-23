@@ -5,17 +5,15 @@ import { formatTime } from 'c/util';
 export default class TeaTimer extends LightningElement {
 
     intervalNumber = 0;
-    requestIntervalNumber = this.intervalNumber;
-    secondsLeft = this.firstInterval;
+    secondsLeft;
     intervalId = null;
     intervalCount;
     timerStarted = false;
-    _showInitSection = true;
 
-    intervalDurationChanged(event){
-        console.log(event);
-        this.secondsLeft = event.detail;
-    }
+    // intervalDurationChanged(event){
+    //     console.log(event);
+    //     this.secondsLeft = event.detail;
+    // }
 
     intervalCountChanged(event){
         console.log(event);
@@ -24,8 +22,10 @@ export default class TeaTimer extends LightningElement {
 
     startCountdown() {
         this.hideInitSection();
-        this.requestIntervalNumber = this.intervalNumber;
         this.timerStarted = true;
+        this.secondsLeft = this.template
+            .querySelector('c-simple-init')
+            .getDurationForInterval(this.intervalNumber);
         this.intervalNumber++;
         this.intervalId=setInterval(() => {
             this.secondsLeft--;
@@ -36,7 +36,7 @@ export default class TeaTimer extends LightningElement {
     }
 
     finishCountdown(){
-        this.playAudio();
+        this.ringBell();
         clearInterval(this.intervalId);
         this.intervalId = null;
     }
@@ -45,12 +45,10 @@ export default class TeaTimer extends LightningElement {
         return `Infusion ${this.intervalNumber}/${this.intervalCount}`
     }
 
-    timerIsRunning(){
-        return this.intervalId !== null;
-    }
+    timerIsNotRunning = () => this.intervalId === null;
 
-    get hideButton(){
-        return this.timerIsRunning();
+    get showButton(){
+        return this.timerIsNotRunning();
     }
 
     get buttonLabel(){
@@ -75,6 +73,8 @@ export default class TeaTimer extends LightningElement {
         return this.countdownColorClass() + ' countDown';
     }
 
+    _showInitSection = true;
+
     get initSectionClass() {
         return this._showInitSection
         ? 'slds-show'
@@ -89,7 +89,7 @@ export default class TeaTimer extends LightningElement {
         this._showInitSection = true;
     }
 
-    playAudio() {
+    ringBell() {
         let audio = new Audio();
         audio.src = BELL_AUDIO;
         audio.load();
