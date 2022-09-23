@@ -4,17 +4,28 @@ import { formatTime } from 'c/util';
 
 export default class TeaTimer extends LightningElement {
 
-    firstInterval = 20;
-    intervalIncrease = 5;
-    intervalCount = 9;
     intervalNumber = 0;
+    requestIntervalNumber = this.intervalNumber;
     secondsLeft = this.firstInterval;
     intervalId = null;
+    intervalCount;
     timerStarted = false;
+    _showInitSection = true;
+
+    intervalDurationChanged(event){
+        console.log(event);
+        this.secondsLeft = event.detail;
+    }
+
+    intervalCountChanged(event){
+        console.log(event);
+        this.intervalCount = event.detail;
+    }
 
     startCountdown() {
+        this.hideInitSection();
+        this.requestIntervalNumber = this.intervalNumber;
         this.timerStarted = true;
-        this.secondsLeft = parseInt(this.firstInterval) + this.intervalNumber * this.intervalIncrease;
         this.intervalNumber++;
         this.intervalId=setInterval(() => {
             this.secondsLeft--;
@@ -64,19 +75,19 @@ export default class TeaTimer extends LightningElement {
         return this.countdownColorClass() + ' countDown';
     }
 
-    firstInfusionChanged(event) {
-        this.firstInterval=event.target.value;
-        this.secondsLeft=this.firstInterval;
+    get initSectionClass() {
+        return this._showInitSection
+        ? 'slds-show'
+        : 'slds-hide';
     }
 
-    intervalIncreaseChanged(event) {
-        this.intervalIncrease=event.target.value;
+    hideInitSection(){
+        this._showInitSection = false;
     }
 
-    intervalCountChanged(event) {
-        this.intervalCount=event.target.value;
+    showInitSection(){
+        this._showInitSection = true;
     }
-
 
     playAudio() {
         let audio = new Audio();

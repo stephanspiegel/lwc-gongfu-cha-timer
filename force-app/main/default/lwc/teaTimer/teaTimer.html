@@ -2,50 +2,14 @@
     <div class="slds-size_medium">
         <lightning-card title={timerTitle}>
             <div class="slds-var-p-around_medium">
-                <template if:false={timerStarted}>
-                    <lightning-layout multiple-rows>
-                        <lightning-layout-item padding="around-small">
-                            <div>
-                                <lightning-input 
-                                    label="First infusion" 
-                                    type="number" 
-                                    value={firstInterval} 
-                                    onchange={firstInfusionChanged}
-                                    max-length="3"
-                                    class="initInput"
-                                >
-                                </lightning-input>
-                            </div>
-                        </lightning-layout-item>
-                        <lightning-layout-item padding="around-small">
-                            <div>
-                                <lightning-input 
-                                    label="Increase infusions by" 
-                                    type="number" 
-                                    value={intervalIncrease} 
-                                    onchange={intervalIncreaseChanged}
-                                    max-length="2"
-                                    class="initInput"
-                                >
-                                </lightning-input>
-                            </div>
-                        </lightning-layout-item>
-                        <lightning-layout-item padding="around-small">
-                            <div>
-                                <lightning-input
-                                    label="Number of infusions" 
-                                    type="number" 
-                                    value={intervalCount} 
-                                    onchange={intervalCountChanged}
-                                    max-length="2"
-                                    class="initInput intervalCount"
-                                >
-                                </lightning-input>
-                            </div>
-
-                        </lightning-layout-item>
-                    </lightning-layout>
-                </template>
+                <div class={initSectionClass}>
+                    <c-simple-init 
+                        interval-number={requestIntervalNumber}
+                        onupdate_interval={intervalDurationChanged}
+                        onupdate_interval_count={intervalCountChanged}
+                    >
+                    </c-simple-init>
+                </div>
                 <template if:true={timerStarted}>
                     <div class="slds-var-p-top_medium">
                         <div class="slds-align_absolute-center">

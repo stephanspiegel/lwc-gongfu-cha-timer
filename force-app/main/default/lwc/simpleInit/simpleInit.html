@@ -1,0 +1,40 @@
+<template>
+    <lightning-layout multiple-rows>
+        <lightning-layout-item padding="around-small">
+            <div>
+                <lightning-input 
+                    label="First infusion" 
+                    type="number" 
+                    value={firstInterval} 
+                    onchange={firstInfusionChanged}
+                    max-length="3"
+                >
+                </lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item  padding="around-small">
+            <div>
+                <lightning-input 
+                    label="Increase infusions by" 
+                    type="number" 
+                    value={intervalIncrease} 
+                    onchange={intervalIncreaseChanged}
+                    max-length="2"
+                >
+                </lightning-input>
+            </div>
+        </lightning-layout-item>
+        <lightning-layout-item  padding="around-small">
+            <div>
+                <lightning-input
+                    label="Number of infusions"
+                    type="number"
+                    value={intervalCount} 
+                    onchange={intervalCountChanged}
+                    max-length="2"
+                >
+                </lightning-input>
+            </div>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
