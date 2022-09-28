@@ -1,12 +1,20 @@
 {
-  "packageDirectories": [
-    {
-      "path": "force-app",
-      "default": true
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "Gongfu Cha Timer",
+            "versionName": "Da Hong Pao",
+            "versionNumber": "1.0.0.NEXT"
+        }
+    ],
+    "name": "gong-fu-cha-timer",
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "55.0",
+    "packageAliases": {
+        "Gongfu Cha Timer": "0Ho8W000000KzBZSA0",
+        "Gongfu Cha Timer@1.0.0-1": "04t8W000003RnojQAC",
+        "Gongfu Cha Timer@1.0.0-2": "04t8W000003RnooQAC"
     }
-  ],
-  "name": "gong-fu-cha-timer",
-  "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "55.0"
 }
