@@ -9,11 +9,7 @@ export default class TeaTimer extends LightningElement {
     intervalId = null;
     intervalCount;
     timerStarted = false;
-
-    // intervalDurationChanged(event){
-    //     console.log(event);
-    //     this.secondsLeft = event.detail;
-    // }
+    notificationSound = new Audio(BELL_AUDIO);
 
     intervalCountChanged(event){
         console.log(event);
@@ -90,9 +86,7 @@ export default class TeaTimer extends LightningElement {
     }
 
     ringBell() {
-        let audio = new Audio();
-        audio.src = BELL_AUDIO;
-        audio.load();
-        audio.play();
+        this.notificationSound.currentTime = 0;
+        this.notificationSound.play();
     }
 }
