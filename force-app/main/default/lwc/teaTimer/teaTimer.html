@@ -2,9 +2,18 @@
     <div class="slds-size_medium">
         <lightning-card title={timerTitle}>
             <div class="slds-var-p-around_medium">
+                <lightning-button 
+                    variant="destructive-text"
+                    label="Reset"
+                    onclick={resetTimer}
+                >
+                </lightning-button>
                 <div class={initSectionClass}>
                     <c-simple-init 
                         oninterval_count_changed={intervalCountChanged}
+                        first-interval={defaultFirstInterval}
+                        interval-increase={defaultIntervalIncrease}
+                        interval-count={defaultIntervalCount}
                     >
                     </c-simple-init>
                 </div>
@@ -21,6 +30,8 @@
                     <div class="slds-var-p-top_medium">
                         <template if:true={showButton}>
                             <lightning-button 
+                                class="slds-align_absolute-center"
+                                variant="brand"
                                 label={buttonLabel}
                                 onclick={startCountdown}
                             >

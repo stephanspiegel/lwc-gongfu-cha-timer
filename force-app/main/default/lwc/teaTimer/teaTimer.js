@@ -10,9 +10,39 @@ export default class TeaTimer extends LightningElement {
     intervalCount;
     timerStarted = false;
     notificationSound = new Audio(BELL_AUDIO);
+    defaultFirstInterval = 20;
+    defaultIntervalCount = 9;
+    defaultIntervalIncrease = 5;
+
+    connectedCallback() {
+        this.disablePullToRefresh();
+    }
+
+    // Fire the event to disable pull-to-refresh on this page
+    // This has an effect only in the Salesforce Mobile and 
+    // Mobile Publisher apps
+    disablePullToRefresh () {
+        // CustomEvent is standard JavaScript. See:
+        // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
+        const disable_ptr_event = new CustomEvent("updateScrollSettings", {
+            detail: {
+                isPullToRefreshEnabled: false
+            },
+            bubbles: true,
+            composed: true
+        });
+        this.dispatchEvent(disable_ptr_event);
+    }
+
+    setDefaults(){
+        const simpleInitComponent = this.template.querySelector('c-simple-init');
+        console.log(simpleInitComponent);
+        simpleInitComponent.firstInterval=this.defaultFirstInterval;
+        simpleInitComponent.intervalCount=this.defaultIntervalCount;
+        simpleInitComponent.intervalIncrease=this.defaultIntervalIncrease;
+    }
 
     intervalCountChanged(event){
-        console.log(event);
         this.intervalCount = event.detail;
     }
 
@@ -88,5 +118,11 @@ export default class TeaTimer extends LightningElement {
     ringBell() {
         this.notificationSound.currentTime = 0;
         this.notificationSound.play();
+    }
+
+    resetTimer() {
+        this.timerStarted = false;
+        this.setDefaults();
+        this.showInitSection();
     }
 }

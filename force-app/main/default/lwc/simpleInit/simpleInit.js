@@ -2,9 +2,12 @@ import { LightningElement, api } from 'lwc';
 
 export default class SimpleInit extends LightningElement {
 
-    firstInterval = 20;
-    intervalIncrease = 5;
-    intervalCount = 9;
+    @api 
+    firstInterval=20;
+    @api 
+    intervalIncrease=5;
+    @api 
+    intervalCount=9;
 
     @api
     getDurationForInterval(intervalNumber) {
