@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import LightningConfirm from 'lightning/confirm';
 import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
 import { formatTime } from 'c/util';
 
@@ -118,6 +119,13 @@ export default class TeaTimer extends LightningElement {
     ringBell() {
         this.notificationSound.currentTime = 0;
         this.notificationSound.play();
+    }
+
+    promptForReset(){
+        LightningConfirm.open({
+            label: 'Reset Timer?',
+            message: 'Click "OK" to reset everything'
+        }).then(result => result && this.resetTimer());
     }
 
     resetTimer() {
