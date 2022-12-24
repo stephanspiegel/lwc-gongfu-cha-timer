@@ -130,6 +130,7 @@ export default class TeaTimer extends LightningElement {
 
     resetTimer() {
         this.timerStarted = false;
+        this.intervalNumber = 0;
         this.setDefaults();
         this.showInitSection();
     }
