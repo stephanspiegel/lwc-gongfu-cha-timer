@@ -2,12 +2,23 @@
     <div class="slds-size_medium">
         <lightning-card title={timerTitle}>
             <div class="slds-var-p-around_medium">
-                <lightning-button 
-                    variant="destructive-text"
-                    label="Reset"
-                    onclick={promptForReset}
-                >
-                </lightning-button>
+                <template if:false={timerStarted}>
+                    <lightning-button 
+                        variant="destructive"
+                        label="Reset"
+                        onclick={promptForReset}
+                    >
+                    </lightning-button>
+                </template>
+                <template if:true={timerStarted}>
+                    <lightning-button 
+                        class="slds-align_absolute-center"
+                        variant="destructive-text"
+                        label="Stop"
+                        onclick={abortCountdown}
+                    >
+                    </lightning-button>
+                </template>
                 <div class={initSectionClass}>
                     <c-simple-init 
                         oninterval_count_changed={intervalCountChanged}

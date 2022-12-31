@@ -68,6 +68,13 @@ export default class TeaTimer extends LightningElement {
         this.intervalId = null;
     }
 
+    abortCountdown(){
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+        this.intervalNumber--;
+        this.timerStarted = null;
+    }
+
     get timerTitle(){
         return `Infusion ${this.intervalNumber}/${this.intervalCount}`
     }
