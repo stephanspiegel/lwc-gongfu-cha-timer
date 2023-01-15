@@ -36,7 +36,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Number_of_Infusion__c</field>
+                <field>Number_of_Infusions__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -28,7 +28,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Tea_Variety__c.Number_of_Infusion__c</field>
+        <field>Tea_Variety__c.Number_of_Infusions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
