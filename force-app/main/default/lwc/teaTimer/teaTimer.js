@@ -1,5 +1,6 @@
 import { LightningElement } from 'lwc';
 import LightningConfirm from 'lightning/confirm';
+import LightningPrompt from 'lightning/prompt';
 import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
 import { formatTime } from 'c/util';
 
@@ -14,6 +15,7 @@ export default class TeaTimer extends LightningElement {
     defaultFirstInterval = 20;
     defaultIntervalCount = 9;
     defaultIntervalIncrease = 5;
+    manuallyAddedTime = 0;
 
     connectedCallback() {
         this.disablePullToRefresh();
@@ -52,7 +54,7 @@ export default class TeaTimer extends LightningElement {
         this.timerStarted = true;
         this.secondsLeft = this.template
             .querySelector('c-simple-init')
-            .getDurationForInterval(this.intervalNumber);
+            .getDurationForInterval(this.intervalNumber) + this.manuallyAddedTime;
         this.intervalNumber++;
         this.intervalId=setInterval(() => {
             this.secondsLeft--;
@@ -72,7 +74,7 @@ export default class TeaTimer extends LightningElement {
         clearInterval(this.intervalId);
         this.intervalId = null;
         this.intervalNumber--;
-        this.timerStarted = null;
+        this.timerStarted = false;
     }
 
     get timerTitle(){
@@ -81,12 +83,20 @@ export default class TeaTimer extends LightningElement {
 
     timerIsNotRunning = () => this.intervalId === null;
 
-    get showButton(){
+    get showNextInfusionButton(){
         return this.timerIsNotRunning();
     }
 
+    get showResetButton(){
+        return !this._showInitSection && this.timerIsNotRunning();
+    }
+
+    get showStopButton() {
+        return !this.timerIsNotRunning() && this.timerStarted;
+    }
+
     get buttonLabel(){
-        return `Start infusion ${this.intervalNumber + 1}`
+        return `Start infusion ${this.intervalNumber + 1}`;
     }
 
     get timeLeft(){
@@ -133,6 +143,18 @@ export default class TeaTimer extends LightningElement {
             label: 'Reset Timer?',
             message: 'Click "OK" to reset everything'
         }).then(result => result && this.resetTimer());
+    }
+
+    promptForChanges(){
+        LightningPrompt.open({
+            label: 'Add Time',
+            message:  'Add seconds to next infusion',
+            defaultValue: '30',
+        }).then((result) => {
+            const parsed = parseInt(result, 10);
+            if (isNaN(parsed)) { return 0; }
+            this.manuallyAddedTime += parsed;
+        });
     }
 
     resetTimer() {
