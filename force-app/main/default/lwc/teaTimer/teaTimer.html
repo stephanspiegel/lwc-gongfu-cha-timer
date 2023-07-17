@@ -44,6 +44,7 @@
                 <div class={initSectionClass}>
                     <c-simple-init 
                         oninterval_count_changed={intervalCountChanged}
+                        onfirst_interval_changed={firstInfusionChanged}
                         first-interval={defaultFirstInterval}
                         interval-increase={defaultIntervalIncrease}
                         interval-count={defaultIntervalCount}
@@ -70,6 +71,11 @@
                             >
                             </lightning-button>
                         </template>
+                    </div>
+                </div>
+                <div class="slds-var-p-top_medium">
+                    <div class="slds-var-p-top_medium">
+                        <p>Next: Infusion {nextInfusionNumber}, {nextIntervalLengthText}</p>
                     </div>
                 </div>
             </div>

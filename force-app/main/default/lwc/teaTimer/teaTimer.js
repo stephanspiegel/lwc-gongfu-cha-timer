@@ -16,6 +16,7 @@ export default class TeaTimer extends LightningElement {
     defaultIntervalCount = 9;
     defaultIntervalIncrease = 5;
     manuallyAddedTime = 0;
+    nextIntervalLength = this.defaultFirstInterval;
 
     connectedCallback() {
         this.disablePullToRefresh();
@@ -49,12 +50,15 @@ export default class TeaTimer extends LightningElement {
         this.intervalCount = event.detail;
     }
 
+    firstInfusionChanged(event){
+        this.nextIntervalLength = event.detail;
+    }
+
     startCountdown() {
         this.hideInitSection();
         this.timerStarted = true;
-        this.secondsLeft = this.template
-            .querySelector('c-simple-init')
-            .getDurationForInterval(this.intervalNumber) + this.manuallyAddedTime;
+        this.nextIntervalLength = this.calculateNextIntervalLength(this.intervalNumber + 1);
+        this.secondsLeft = this.calculateNextIntervalLength(this.intervalNumber);
         this.intervalNumber++;
         this.intervalId=setInterval(() => {
             this.secondsLeft--;
@@ -63,6 +67,10 @@ export default class TeaTimer extends LightningElement {
             }
         }, 1000);
     }
+
+    calculateNextIntervalLength = (interval) => this.template
+            .querySelector('c-simple-init')
+            .getDurationForInterval(interval) + this.manuallyAddedTime;
 
     finishCountdown(){
         this.ringBell();
@@ -101,6 +109,16 @@ export default class TeaTimer extends LightningElement {
 
     get timeLeft(){
         return formatTime(this.secondsLeft);
+    }
+
+    get nextInfusionNumber(){
+        return this.intervalNumber + 1;
+    }
+
+    get nextIntervalLengthText() {
+        return this.nextIntervalLength > 59
+        ? formatTime(this.nextIntervalLength)
+        : this.nextIntervalLength + 's';
     }
 
     countdownColorClass(){
@@ -154,13 +172,16 @@ export default class TeaTimer extends LightningElement {
             const parsed = parseInt(result, 10);
             if (isNaN(parsed)) { return 0; }
             this.manuallyAddedTime += parsed;
+            this.nextIntervalLength = this.calculateNextIntervalLength(this.intervalNumber);
         });
     }
 
     resetTimer() {
         this.timerStarted = false;
         this.intervalNumber = 0;
+        this.manuallyAddedTime = 0;
         this.setDefaults();
+        this.nextIntervalLength = this.calculateNextIntervalLength(this.intervalNumber);
         this.showInitSection();
     }
 }

@@ -20,6 +20,7 @@ export default class SimpleInit extends LightningElement {
 
     firstInfusionChanged(event) {
         this.firstInterval=event.target.value;
+        this.updateFirstInfusion();
     }
 
     intervalIncreaseChanged(event) {
@@ -34,6 +35,12 @@ export default class SimpleInit extends LightningElement {
     updateIntervalCount(){
         this.dispatchEvent(new CustomEvent('interval_count_changed', {
             detail: this.intervalCount
+        }))
+    }
+
+    updateFirstInfusion(){
+        this.dispatchEvent(new CustomEvent('first_interval_changed', {
+            detail: this.firstInterval
         }))
     }
 
