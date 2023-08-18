@@ -2,7 +2,9 @@ import { LightningElement } from 'lwc';
 import LightningConfirm from 'lightning/confirm';
 import LightningPrompt from 'lightning/prompt';
 import BELL_AUDIO from '@salesforce/resourceUrl/bell_audio'
+import BACKGROUND_IMAGE from '@salesforce/resourceUrl/shou_wet_leaves'
 import { formatTime } from 'c/util';
+
 
 export default class TeaTimer extends LightningElement {
 
@@ -183,5 +185,9 @@ export default class TeaTimer extends LightningElement {
         this.setDefaults();
         this.nextIntervalLength = this.calculateNextIntervalLength(this.intervalNumber);
         this.showInitSection();
+    }
+
+    get backgroundStyle() {
+        return `background-size:450px;background-position:center;background-image:url(${BACKGROUND_IMAGE})`;
     }
 }

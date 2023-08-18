@@ -1,6 +1,7 @@
 .countDown {
     font-size: 8em;
     line-height: 1em;
+    backdrop-filter: blur(5px);
 }
 
 .imminent {
@@ -13,4 +14,12 @@
 
 .dormant {
     color: darkslateblue;
+}
+
+:host {
+    --slds-c-card-color-background: none; 
+    --slds-c-card-text-color: white;
+    --lwc-colorTextLabel: white;
+    --slds-c-input-text-color: black;
+    --slds-c-input-text-color-focus: black;
 }

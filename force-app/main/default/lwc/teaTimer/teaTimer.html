@@ -1,84 +1,83 @@
 <template>
     <div class="slds-size_medium">
-        <lightning-card title={timerTitle}>
-            <div class="slds-var-p-around_medium">
-                <template if:true={showResetButton}>
-                    <lightning-layout multiple-rows>
-                        <lightning-layout-item 
-                            size="6" 
-                            flexibility="auto" 
-                            padding="horizontal-small" 
-                            class="slds-text-align_left">
-                            <lightning-button 
-                                class="slds-text-align_left"
-                                variant="destructive"
-                                label="Reset"
-                                onclick={promptForReset}
-                            >
-                            </lightning-button>
-                        </lightning-layout-item>
-                        <lightning-layout-item 
-                            size="6" 
-                            flexibility="auto" 
-                            padding="horizontal-small" 
-                            class="slds-text-align_right">
-                            <lightning-button 
-                                class="slds-text-align_right"
-                                variant="success"
-                                label="Add Time"
-                                onclick={promptForChanges}
-                            >
-                            </lightning-button>
-                        </lightning-layout-item>
-                    </lightning-layout>
-                </template>
-                <template if:true={showStopButton}>
-                    <lightning-button 
-                        class="slds-align_absolute-center"
-                        variant="destructive-text"
-                        label="Stop"
-                        onclick={abortCountdown}
-                    >
-                    </lightning-button>
-                </template>
-                <div class={initSectionClass}>
-                    <c-simple-init 
-                        oninterval_count_changed={intervalCountChanged}
-                        onfirst_interval_changed={firstInfusionChanged}
-                        first-interval={defaultFirstInterval}
-                        interval-increase={defaultIntervalIncrease}
-                        interval-count={defaultIntervalCount}
-                    >
-                    </c-simple-init>
-                </div>
-                <template if:true={timerStarted}>
-                    <div class="slds-var-p-top_medium">
-                        <div class="slds-align_absolute-center">
-                            <div class={countdownClass}>
-                                {timeLeft}
+        <div style={backgroundStyle}>
+            <lightning-card title={timerTitle}>
+                <div class="slds-var-p-around_medium">
+                    <template if:true={showResetButton}>
+                        <lightning-layout multiple-rows horizontal-align="center">
+                            <lightning-layout-item 
+                                size="6" 
+                                flexibility="auto" 
+                                padding="horizontal-small" 
+                                class="slds-text-align_left">
+                                <lightning-button 
+                                    class="slds-text-align_left"
+                                    label="Reset"
+                                    onclick={promptForReset}
+                                >
+                                </lightning-button>
+                            </lightning-layout-item>
+                            <lightning-layout-item 
+                                size="6" 
+                                flexibility="auto" 
+                                padding="horizontal-small" 
+                                class="slds-text-align_right">
+                                <lightning-button 
+                                    class="slds-text-align_right"
+                                    label="Add Time"
+                                    onclick={promptForChanges}
+                                >
+                                </lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                    </template>
+                    <template if:true={showStopButton}>
+                        <lightning-button 
+                            class="slds-align_absolute-center"
+                            variant="destructive-text"
+                            label="Stop"
+                            onclick={abortCountdown}
+                        >
+                        </lightning-button>
+                    </template>
+                    <div class={initSectionClass}>
+                        <c-simple-init 
+                            oninterval_count_changed={intervalCountChanged}
+                            onfirst_interval_changed={firstInfusionChanged}
+                            first-interval={defaultFirstInterval}
+                            interval-increase={defaultIntervalIncrease}
+                            interval-count={defaultIntervalCount}
+                        >
+                        </c-simple-init>
+                    </div>
+                    <template if:true={timerStarted}>
+                        <div class="slds-var-p-top_medium">
+                            <div class="slds-align_absolute-center">
+                                <div class={countdownClass}>
+                                    {timeLeft}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </template>
-                <div class="slds-var-p-top_medium">
+                    </template>
                     <div class="slds-var-p-top_medium">
-                        <template if:true={showNextInfusionButton}>
-                            <lightning-button 
-                                class="slds-align_absolute-center"
-                                variant="brand"
-                                label={buttonLabel}
-                                onclick={startCountdown}
-                            >
-                            </lightning-button>
-                        </template>
+                        <div class="slds-var-p-top_medium">
+                            <template if:true={showNextInfusionButton}>
+                                <lightning-button 
+                                    class="slds-align_absolute-center"
+                                    label={buttonLabel}
+                                    onclick={startCountdown}
+                                >
+                                </lightning-button>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="slds-var-p-top_medium">
+                        <div class="slds-var-p-top_medium slds-text-align_center">
+                            <p>Next: Infusion {nextInfusionNumber}, {nextIntervalLengthText}</p>
+                        </div>
                     </div>
                 </div>
-                <div class="slds-var-p-top_medium">
-                    <div class="slds-var-p-top_medium">
-                        <p>Next: Infusion {nextInfusionNumber}, {nextIntervalLengthText}</p>
-                    </div>
-                </div>
-            </div>
-        </lightning-card>
+            </lightning-card>
+        </div>
     </div>
 </template>
