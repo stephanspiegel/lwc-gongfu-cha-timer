@@ -4,8 +4,8 @@
       "path": "force-app",
       "default": true,
       "package": "Gongfu Cha Timer",
-      "versionName": "Xing Ren Xiang",
-      "versionNumber": "1.0.2.NEXT"
+      "versionName": "Jin Xuan",
+      "versionNumber": "1.0.3.NEXT"
     }
   ],
   "name": "gong-fu-cha-timer",
@@ -20,6 +20,7 @@
     "Gongfu Cha Timer@1.0.1-2": "04t8W000003Rr4sQAC",
     "Gongfu Cha Timer@1.0.1-3": "04t8W000003Rr4xQAC",
     "Gongfu Cha Timer@1.0.1-4": "04t8W000003Rr5vQAC",
-    "Gongfu Cha Timer@1.0.2-1": "04t8W000003BOljQAG"
+    "Gongfu Cha Timer@1.0.2-1": "04t8W000003BOljQAG",
+    "Gongfu Cha Timer@1.0.3-1": "04t8W000003JjdvQAC"
   }
 }
